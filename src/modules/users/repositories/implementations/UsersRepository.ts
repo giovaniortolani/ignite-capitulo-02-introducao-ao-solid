@@ -23,7 +23,7 @@ class UsersRepository implements IUsersRepository {
     const timestamp = new Date();
     Object.assign(user, {
       name,
-      email,
+      email: email.trim().toLowerCase(),
       created_at: timestamp,
       updated_at: timestamp,
     });
@@ -40,7 +40,9 @@ class UsersRepository implements IUsersRepository {
   }
 
   findByEmail(email: string): User | undefined {
-    const user = this.users.find((user) => user.email === email);
+    const user = this.users.find(
+      (user) => user.email === email.trim().toLowerCase()
+    );
 
     return user;
   }
