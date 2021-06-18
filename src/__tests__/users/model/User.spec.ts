@@ -2,7 +2,7 @@ import { validate } from 'uuid';
 
 import { User } from '../../../modules/users/model/User';
 
-describe.only('User model', () => {
+describe('User model', () => {
   it('should be able to create an user with all props', () => {
     const user = new User();
 

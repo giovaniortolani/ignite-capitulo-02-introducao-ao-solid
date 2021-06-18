@@ -6,7 +6,11 @@
   "scripts": {
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts",
     "lint:fix": "eslint --fix . --ext ts,tsx",
-    "test": "jest"
+    "test": "jest",
+    "test:model": "jest src/__tests__/users/model/User.spec.ts",
+    "test:repositories": "jest src/__tests__/users/repositories/UsersRepository.spec.ts",
+    "test:usecases": "jest src/__tests__/users/useCases",
+    "test:routes": "jest src/__tests__/routes.spec.ts"
   },
   "dependencies": {
     "express": "^4.17.1",
