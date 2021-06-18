@@ -10,6 +10,7 @@
     "test:model": "jest src/__tests__/users/model/User.spec.ts",
     "test:repositories": "jest src/__tests__/users/repositories/UsersRepository.spec.ts",
     "test:usecases:createuser": "jest src/__tests__/users/useCases/CreateUserUseCase.spec.ts",
+    "test:usecases:turnuseradmin": "jest src/__tests__/users/useCases/TurnUserAdminUseCase.spec.ts",
     "test:routes": "jest src/__tests__/routes.spec.ts"
   },
   "dependencies": {
