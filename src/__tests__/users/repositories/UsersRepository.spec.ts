@@ -72,7 +72,7 @@ describe('UsersRepository', () => {
     expect(findUser.updated_at).toBeInstanceOf(Date);
   });
 
-  it('should be able to turn an user as admin', () => {
+  it.only('should be able to turn an user as admin', () => {
     const user = usersRepository.create({
       name: 'Vinicius Fraga',
       email: 'vinifraga@rocketseat.com',
