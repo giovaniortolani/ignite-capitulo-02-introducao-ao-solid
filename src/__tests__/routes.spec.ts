@@ -39,7 +39,7 @@ describe('[POST] /users', () => {
   });
 });
 
-describe('[PATCH] /users/:user_id/admin', () => {
+describe.only('[PATCH] /users/:user_id/admin', () => {
   it('should be able to turn an user as admin', async () => {
     const usersRepository = UsersRepository.getInstance();
 
