@@ -54,7 +54,7 @@ describe('UsersRepository', () => {
     expect(findUser.updated_at).toBeInstanceOf(Date);
   });
 
-  it.only('should be able to find user by e-mail address', () => {
+  it('should be able to find user by e-mail address', () => {
     const user = usersRepository.create({
       name: 'Vinicius Fraga',
       email: 'vinifraga@rocketseat.com',
@@ -72,7 +72,7 @@ describe('UsersRepository', () => {
     expect(findUser.updated_at).toBeInstanceOf(Date);
   });
 
-  it.only('should be able to turn an user as admin', () => {
+  it('should be able to turn an user as admin', () => {
     const user = usersRepository.create({
       name: 'Vinicius Fraga',
       email: 'vinifraga@rocketseat.com',
