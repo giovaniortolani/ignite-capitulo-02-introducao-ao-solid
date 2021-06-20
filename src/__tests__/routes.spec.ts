@@ -4,8 +4,8 @@ import { v4 } from 'uuid';
 import { app } from '../index';
 import { UsersRepository } from '../modules/users/repositories/implementations/UsersRepository';
 
-describe('[POST] /users', () => {
-  it('should be able to create new users', async () => {
+describe.only('[POST] /users', () => {
+  it.only('should be able to create new users', async () => {
     const response = await request(app)
       .post('/users')
       .send({
