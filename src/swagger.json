@@ -1,0 +1,127 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Desafio 2 - Introdução ao S.O.L.I.D.",
+    "description": "API simples criada para o desafio 2 do curso Ignite da Rocketseat cujo propósito é a criação de usuários e listagem de usuários. [Repositório](https://github.com/giovaniortolani/ignite-capitulo-02-introducao-ao-solid) com o código da API e [descrição](https://www.notion.so/Desafio-01-Introdu-o-ao-SOLID-3b9be286fac0482ca3b275473ddd2d72) da API.",
+    "contact": {
+      "email": "giovaniortolanibarbosa@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "user"
+    }
+  ],
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": ["user"],
+        "summary": "Cria um usuário",
+        "operationId": "createUser",
+        "requestBody": {
+          "description": "Usuário a ser criado",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                },
+                "required": ["name", "email"],
+                "example": {
+                  "name": "User sample name",
+                  "email": "example@example.com"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Usuário criado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Email já cadastrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
+          },
+          "admin": {
+            "type": "boolean"
+          }
+        },
+        "example": {
+          "name": "User sample name",
+          "email": "example@example.com",
+          "id": "6c28024b-bf69-450e-a77d-dc547e41ff47",
+          "admin": false,
+          "created_at": "2021-06-23T00:38:49.641Z",
+          "updated_at": "2021-06-23T00:38:53.004Z"
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "error": "<Error message>"
+        }
+      }
+    }
+  }
+}
