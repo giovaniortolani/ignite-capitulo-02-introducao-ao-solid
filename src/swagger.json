@@ -75,6 +75,190 @@
             }
           }
         }
+      },
+      "get": {
+        "tags": ["user"],
+        "summary": "Retorna as informações de todos os usuários. É necessário ser admin para tal.",
+        "operationId": "listAllUsers",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "user_id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "The admin User ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Informações dos usuários",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Usuário não existente ou usuário não é admin",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}": {
+      "get": {
+        "tags": ["user"],
+        "summary": "Retorna as informações de um usuário",
+        "operationId": "showUserProfile",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "user_id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "The User ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Informações do usuário",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Usuário não existente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}/admin": {
+      "patch": {
+        "tags": ["user"],
+        "summary": "Transforma um usuário em admin",
+        "operationId": "turnUserAdmin",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "user_id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "The User ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuário transformado em admin",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "admin": {
+                      "type": "boolean"
+                    }
+                  },
+                  "example": {
+                    "name": "User sample name",
+                    "email": "example@example.com",
+                    "id": "6c28024b-bf69-450e-a77d-dc547e41ff47",
+                    "admin": true,
+                    "created_at": "2021-06-23T00:38:49.641Z",
+                    "updated_at": "2021-06-23T00:38:53.004Z"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Usuário não existente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -90,13 +274,16 @@
             "type": "string"
           },
           "id": {
-            "type": "string"
+            "type": "string",
+            "format": "uuid"
           },
           "created_at": {
-            "type": "string"
+            "type": "string",
+            "format": "date-time"
           },
           "updated_at": {
-            "type": "string"
+            "type": "string",
+            "format": "date-time"
           },
           "admin": {
             "type": "boolean"
